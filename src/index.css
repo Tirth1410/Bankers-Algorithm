@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.my-no-spinners input[type="number"]::-webkit-outer-spin-button,
+.my-no-spinners input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.my-no-spinners input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Reset for all browsers (optional) */
+input[type="number"] {
+    appearance: none;
+}
