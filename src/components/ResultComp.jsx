@@ -221,7 +221,6 @@ const ResultComp = ({numRes, numPro, setNumRes, setNumPro}) => {
                         dispatch(resetAvail());
                         dispatch(resetData());
                         dispatch(resetMaxReq());
-                        window.location.reload();
                         dispatch(setCurrentPage(0));
                         setNumPro(0);
                         setNumRes(0);
