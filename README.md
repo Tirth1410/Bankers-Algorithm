@@ -3,12 +3,7 @@ This website is solved a problem on bankers Algorithm visually. After the succes
 
 #Installation
 
-1. Clone the repository using
-     git clone https://github.com/Tirth1410/Bankers-Algorithm.git
-
+1. Clone the repository using - git clone https://github.com/Tirth1410/Bankers-Algorithm.git
 2. After cloning the repository change directory to bankeralgo and run command "npm install" which will install all the dependencies in your system.
-     npm install
-
-3. When all the dependencies are installed, run "npm run dev command" to start the project
-     npm run dev
+3. When all the dependencies are installed, run "npm run dev command" to start the project.
 
