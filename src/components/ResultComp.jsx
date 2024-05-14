@@ -1,29 +1,21 @@
 import {useEffect, useRef, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setCurrentPage} from "../slices/PageSlice.jsx";
-import {reset, resetAvail} from "../slices/AvailableSlice.jsx";
+import {insertAvail, reset, resetAvail} from "../slices/AvailableSlice.jsx";
 import {resetData} from "../slices/DataSlice.jsx";
 import {resetRem} from "../slices/RemainSlice.jsx";
 import {resetMaxReq} from "../slices/MaxReqSlice.jsx";
 
-const ResultComp = () => {
-    const allocated = [
-        [0,1,0],
-        [2,0,0],
-        [3,0,2],
-        [2,1,1],
-        [0,0,2]
-    ];
-    const maxReq = [
-        [7,5,3],
-        [3,2,2],
-        [9,0,2],
-        [4,2,2],
-        [5,3,3]
-    ];
+const ResultComp = ({numRes, numPro, setNumRes, setNumPro}) => {
+
+    const avail = useSelector(state => state.data);
+    const req = useSelector(state => state.maxreq);
+    var already = useSelector(state => state.available);
+    const allocated = avail;
+    const maxReq = req;
     const dispatch = useDispatch();
     const remainig = [];
+
     const skip = [];
     for(var i=0; i<allocated.length; i++){
         skip.push(0);
@@ -32,11 +24,10 @@ const ResultComp = () => {
             remainig[i].push(Math.max(0, maxReq[i][j]) - allocated[i][j]);
         }
     }
-    const navigate = useNavigate();
     const [sequence, setSequence] = useState([]);
-    const [available, setAvailable] = useState([0,0,0]);
     const [focusedRow, setFocusedRow] = useState(0);
     const [focusedCol, setFocusedCol] = useState(0);
+    const [available, setAvailable] = useState([...already]);
     const delay = 500;
     const [deadlock, setDeadlock] = useState(false);
     useEffect(() => {
@@ -67,7 +58,7 @@ const ResultComp = () => {
 
                 if(sum === allocated.length){
                     setDeadlock(false);
-                    console.log(seq);
+                    // console.log(seq);
                     setSequence(seq);
                     setFocusedCol(-1);
                     setFocusedRow(-1);
@@ -82,6 +73,7 @@ const ResultComp = () => {
             setFocusedRow(currentRow);
             setFocusedCol(currentCol);
             const allSmaller = remainig[currentRow].every((cellValue, colIndex) => {
+                // console.log(cellValue + " " + already[colIndex]);
                 return cellValue <= available[colIndex];
             });
             currentCol+=1;
@@ -94,8 +86,10 @@ const ResultComp = () => {
                     seq.push(`P${currentRow}`);
                     const temp = available;
                     for(var i=0; i<remainig[0].length; i++){
-                        temp[i] += allocated[currentRow][i];
+                        // console.log("Updating the  value");
+                        temp[i] = parseInt(available[i]) + parseInt(allocated[currentRow][i]);
                     }
+                    // console.log(temp);
                     setAvailable(temp);
                 }
                 currentCol = 0;
@@ -105,12 +99,15 @@ const ResultComp = () => {
         intervalId = setInterval(cycleCells, delay);
         return () => clearInterval(intervalId);
     }, [delay]);
+
     return (
         <div className="container flex flex-col justify-center items-center w-full mx-auto">
             <div className="flex w-full justify-between items-center h-full">
                 <div className="flex-col mx-auto p-2 w-full">
+                    {/*LABELS*/}
                     <div className="flex gap-x-10 m-2 justify-center">
-                        {available.map((val, i) => (
+                        {
+                            available.map((val, i) => (
                             <div
                                 key={i}
                                 id={`R${i}`}
@@ -179,7 +176,7 @@ const ResultComp = () => {
                                     `}
                                     >
                                         {
-                                            val
+                                            available[i]
                                         }
                                     </div>
                                 )
@@ -192,7 +189,7 @@ const ResultComp = () => {
                 {
                     !deadlock ? (
                         <div
-                            className="bg-green-400 text-black flex w-full justify-center gap-x-3 m-4 p-4 items-center text-2xl font-bold">
+                            className="bg-green-400 text-black flex w-full justify-center gap-x-3 p-4 items-center text-2xl font-bold">
                             <div
                                 className="sequence-container flex flex-wrap justify-center items-center gap-x-3"> {/* Flexbox for sequence items */}
                                 Sequence :
@@ -217,15 +214,21 @@ const ResultComp = () => {
                         </div>
                     )
                 }
-                <button
-                    className="border-2 w-fit mx-auto px-2 py-1 bg-blue-400 hover:bg-blue-500 transition duration-300 ease-in-out"
+                <div
+                    className="border-2 mx-auto w-fit px-2 py-1 bg-blue-400 hover:bg-blue-500 hover:cursor-pointer transition duration-300 ease-in-out"
                     onClick={() => {
-                        setAvailable([]);
+                        dispatch(resetRem());
+                        dispatch(resetAvail());
+                        dispatch(resetData());
+                        dispatch(resetMaxReq());
+                        window.location.reload();
                         dispatch(setCurrentPage(0));
+                        setNumPro(0);
+                        setNumRes(0);
                     }}
                 >
                     HOME
-                </button>
+                </div>
             </div>
         </div>
     )

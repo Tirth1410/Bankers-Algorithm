@@ -12,7 +12,8 @@ const DataSlice = createSlice({
             return newState;
         },
         resetData: () => {
-            return []
+            const newState = [];
+            return newState;
         },
         insertData: (state, action) => {
             const row = action.payload[action.payload.length - 3];

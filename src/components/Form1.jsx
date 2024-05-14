@@ -7,7 +7,10 @@ const Form1 = ( {numRes, numPro, setNumRes, setNumPro} ) => {
         animate: { opacity: 1 },
     };
     return (
-        <div className="w-full mx-auto">
+        <div className="w-full mx-auto flex-col h-10/12 justify-between items-center">
+            <div className="text-center text-3xl font-bold">
+                Enter the number of Resources and Processes
+            </div>
             <form className="flex mx-auto gap-x-4 flex-row items-center justify-center w-5/12">
                 <div className="flex flex-col w-full justify-between items-center">
                     <label className="text-2xl font-bold text-blue-600" htmlFor="numRes">Resources</label>

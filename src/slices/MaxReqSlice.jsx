@@ -12,7 +12,8 @@ const MaxReqSlice = createSlice({
             return newState;
         },
         resetMaxReq: () => {
-            return []
+            const  newState = [];
+            return newState;
         },
         insertMaxReq: (state, action) => {
             const row = action.payload[action.payload.length - 3];

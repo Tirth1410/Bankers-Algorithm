@@ -6,17 +6,21 @@ const AvailableSlice = createSlice({
     reducers: {
         addAvail: (state, action) => {
             const newState = [...state, action.payload];
-            console.log(action.payload);
-            console.log(newState);
+            // console.log(action.payload);
+            // console.log(newState);
             return newState;
         },
         resetAvail: () => {
             return []
         },
         insertAvail: (state, action) => {
+            // console.log(action.payload.length);
             const val = action.payload[action.payload.length - 1];
-            state.push(val);
-            return state;
+            const idx = action.payload[action.payload.length - 2];
+            const newState = [...state];
+            newState[idx] = val;
+            // console.log(newState);
+            return newState;
         },
     },
 });

@@ -12,7 +12,8 @@ const RemainSlice = createSlice({
             return newState;
         },
         resetRem: () => {
-            return []
+            const newState = [];
+            return newState;
         },
         insertRem: (state, action) => {
             const row = action.payload[action.payload.length - 3];

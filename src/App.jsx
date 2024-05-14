@@ -1,21 +1,31 @@
-import {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {BrowserRouter, Route, Router, Routes, useNavigate} from "react-router-dom";
 import './App.css'
 import Home from "./pages/Home.jsx";
+import Navbar from "./components/Navbar.jsx";
+import InputComp from "./components/InputComp.jsx";
+import FooterBar from "./components/Footerbar.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
   const navigate = useNavigate();
 
     useEffect(() => {
         navigate("/home")
     }, []);
+    // document.body.style.overflowY = "hidden";
   return (
-      <Routes>
-          <Route path="/home" element={
-              <Home/>
-          }/>
-      </Routes>
+      <div className="">
+          <Navbar/>
+          <Routes>
+              <Route path="/home" element={
+                  <Home/>
+              }/>
+              <Route path="/calculate" element={
+                  <InputComp/>
+              }/>
+          </Routes>
+          <FooterBar/>
+      </div>
   )
 }
 

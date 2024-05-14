@@ -29,16 +29,16 @@ const Form3 = ({numRes}) => {
         console.log(remain);
     }, []);
     return(
-        <div className="flex-col justify-center items-center w-full mx-auto bg-gray-500">
-            <div className="flex-col justify-center items-center p-4 mx-2">
-                <p className="text-center mx-auto font-bold text-2xl text-white">
+        <div className="flex-col justify-center items-center w-full mx-auto ">
+            <div className="flex-col justify-center items-center p-4 mx-2 border-2 border-black">
+                <p className="text-center mx-auto font-bold text-2xl">
                     Remaining Resources
                 </p>
-                <div className="flex mx-2 justify-center gap-x-28 text-white font-bold text-xl p-1">
+                <div className="flex mx-2 justify-center gap-x-28 font-bold text-xl p-1">
                     {
                         resources.map((res, idx) => {
                             return (
-                                <p className="">
+                                <p className="" key={idx}>
                                     R{idx}
                                 </p>
                             )
@@ -49,11 +49,11 @@ const Form3 = ({numRes}) => {
             {
                 remain.map( (row, index) => {
                     return (
-                        <div className="flex gap-x-20 m-2 justify-center p-4 bg-fuchsia-600">
+                        <div key={index} className="flex gap-x-20 m-2 justify-center p-4 border-black border-2">
                             {
                                 row.map( (val, colIndex) => {
                                     return(
-                                        <div className="h-[40px] w-[50px] flex justify-center items-center text-xl text-white font-bold border-2">
+                                        <div key={colIndex} className="h-[40px] w-[50px] flex justify-center items-center text-xl font-bold border-2 border-purple-300">
                                             {val}
                                         </div>
                                     )

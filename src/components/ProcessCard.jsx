@@ -37,61 +37,59 @@ const ProcessCard = ({numRes, index}) => {
     }
     const dispatch = useDispatch();
     return (
-        <div className="flex items-center flex-row justify-evenly m-2 w-full gap-x-20 text-center bg-red-500">
-            <p className="">P{index}</p>
-            {/*ALLOCATED RESOURCE*/}
-            <div className="flex gap-x-3">
-                <div className="flex-col items-center m-4 justify-center text-center">
-                    {/*<p>Allocated Resources</p>*/}
-                    <div className="flex gap-x-10">
-                        {
-                            resource.map((res, idx) => {
-                                return (
-                                    <div className="flex gap-x-1" key={idx}>
-                                        {/*<label htmlFor={`resource-${idx}`}>R{idx}</label>*/}
-                                        <input
-                                            className="w-10 text-center font-bold border-2 border-red-400 outline-2 rounded-md text-lg focus:border-none focus:outline-none focus:outline-cyan-500 focus:outline-4 transition duration-500"
-                                            type="number"
-                                            value={res}
-                                            name={`resource-${idx}`}
-                                            id={`resource-${idx}`}
-                                            onChange={(e) => {
-                                                handleChange(e.target.value, idx)
-                                            }
-                                            }
-                                        />
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
+        <div className="flex justify-evenly gap-x-20 border-2 border-black w-full my-1">
+            <div className="flex items-center text-center">Process{index}</div>
+            <div className="flex w-7/12 items-center justify-around m-2">
+                {/*ALLOCATED RESOURCE*/}
+                <div className="flex-col justify-center items-center text-center">
+                    <div className="flex justify-center items-center gap-x-10">
+                            {
+                                resource.map((res, idx) => {
+                                    return (
+                                        <div className="text-center" key={idx}>
+                                            {/*<label htmlFor={`resource-${idx}`}>R{idx}</label>*/}
+                                            <input
+                                                className="w-10 text-center font-bold border-2 border-red-400 outline-2 rounded-md text-lg focus:border-none focus:outline-none focus:outl focus:outline-4 transition duration-500"
+                                                type="number"
+                                                value={res}
+                                                name={`resource-${idx}`}
+                                                id={`resource-${idx}`}
+                                                onChange={(e) => {
+                                                    handleChange(e.target.value, idx)
+                                                }
+                                                }
+                                            />
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
                 </div>
-            </div>
-            {/*MAXIMUM REQUIRED RESOURCE*/}
-            <div className="flex gap-x-3">
-                <div className="flex-col m-4 items-center justify-center text-center">
-                    {/*<p>Maximum Required Resources</p>*/}
-                    <div className="flex gap-x-8">
-                        {
-                            required.map((res, idx) => {
-                                return (
-                                    <div className="flex gap-x-1" key={idx}>
-                                        {/*<label htmlFor={`req-${idx}`}>R{idx}</label>*/}
-                                        <input
-                                            className="w-10 text-center font-bold border-2 border-red-400 outline-2 rounded-md text-lg focus:border-none focus:outline-none focus:outline-cyan-500 focus:outline-4 transition duration-500"
-                                            type="number"
-                                            value={res}
-                                            name={`req-${idx}`}
-                                            id={`req-${idx}`}
-                                            onChange={(e) => {
-                                                handleChange2(e.target.value, idx)
-                                            }
-                                            }
-                                        />
-                                    </div>
-                                )
-                            })
-                        }
+                {/*MAXIMUM REQUIRED RESOURCE*/}
+                <div className="flex gap-x-3">
+                    <div className="flex-col m-4 items-center justify-center text-center">
+                        {/*<p>Maximum Required Resources</p>*/}
+                        <div className="flex gap-x-8">
+                            {
+                                required.map((res, idx) => {
+                                    return (
+                                        <div className="" key={idx}>
+                                            <input
+                                                className="w-10 text-center font-bold border-2 border-red-400 outline-2 rounded-md text-lg focus:border-none focus:outline-none focus:outl focus:outline-4 transition duration-500"
+                                                type="number"
+                                                value={res}
+                                                name={`req-${idx}`}
+                                                id={`req-${idx}`}
+                                                onChange={(e) => {
+                                                    handleChange2(e.target.value, idx)
+                                                }
+                                                }
+                                            />
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

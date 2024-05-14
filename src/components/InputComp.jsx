@@ -22,7 +22,7 @@ const InputComp = () => {
         dispatch(decrement());
     }
     return (
-        <div className="gap-y-4 flex flex-col items-center justify-center w-full py-6">
+        <div className="gap-y-4 flex flex-col items-center justify-center w-full py-6 min-h-screen">
             {
                 value === 0 && <Form1 numRes={numRes} numPro={numPro} setNumRes={setNumRes} setNumPro={setNumPro}/>
             }
@@ -33,15 +33,11 @@ const InputComp = () => {
                 value === 2 && <Form3 numRes={numRes}/>
             }
             {
-                value === 3 && <ResultComp/>
+                value === 3 && <ResultComp numRes={numRes} numPro={numPro} setNumRes={setNumRes} setNumPro={setNumPro}/>
             }
             <div className="flex flex-row items-center justify-evenly w-full">
-                {/*{*/}
-                {/*    value > 0 &&*/}
-                {/*    <button className="text-xl font-bold bg-cyan-400 p-2 rounded-md" onClick={dec}>Back</button>*/}
-                {/*}*/}
                 {
-                    value < 2 &&
+                    value < 2 && numPro > 0 && numRes > 0 &&
                     <button className="text-xl font-bold bg-blue-400 p-2 rounded-md" onClick={inc}>Next</button>
                 }
                 {
