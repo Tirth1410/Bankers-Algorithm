@@ -1,9 +1,14 @@
-# React + Vite
+# BankersFlow
+This website is solved a problem on bankers Algorithm visually. After the successfull input parameter are given by the user. The Bankers Algorithm starts to find out whether there is a deadlock or not in the given system.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#Installation
 
-Currently, two official plugins are available:
+1. Clone the repository using
+     git clone https://github.com/Tirth1410/Bankers-Algorithm.git
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# Bankers-Algorithm
+2. After cloning the repository change directory to bankeralgo and run command "npm install" which will install all the dependencies in your system.
+     npm install
+
+3. When all the dependencies are installed, run "npm run dev command" to start the project
+     npm run dev
+
